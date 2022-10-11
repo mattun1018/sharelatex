@@ -1,0 +1,150 @@
+\documentclass[uplatex,dvipdfmx]{jsarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[deluxe]{otf}
+% \usepackage[noto-otc,unicode]{pxchfon}
+\usepackage[unicode]{pxchfon}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{ascmac}
+\usepackage{okumacro}
+\usepackage[deluxe]{otf}
+\usepackage{color}
+\usepackage{minted}
+\usepackage{listings,jvlisting} %日本語のコメントアウトをする場合jvlisting（もしくはjlisting）が必要
+\usepackage{ascmac,here,txfonts,txfonts}
+\lstdefinelanguage{myscilab}{
+    morekeywords=[1]{   % 予約語 標準ライブラリを含む
+        for, end, if, then, function, endfunction, 
+        clear, strtod, read_csv, size, zeros, mean, sqrt, floor, string, disp, sum, 
+        cov, cell, cat, exp, matrix, inv, det, int, gsort, tabul, max, ,else,
+        while, endwhile, plot, bar, hist, scatter, semilogx, semilogy, loglog,
+    },
+    morekeywords=[2]{   % 関数名
+        get_class_range,
+        bayes_train,
+        bayes_valid,
+        receivedString,
+        onButtonPressed,
+        onReceivedNumber,
+        sendNumber,
+        sendString,
+        showLeds,
+        pause,
+        stopAllSounds,
+        clearScreen,
+        setAudioPin,
+        setGroup,
+        setBuiltInSpeakerEnabled,
+        forever,
+        ringTone,
+    },
+    morekeywords=[3]{   % 大域変数
+        DATADIR, ALLDATA,
+        FEATURE1, FEATURE2, FEATURES,
+        FDIM, FDATA, ALLDATA,
+        N_CLASS, N_FDATA, N_CLASS_DATA,
+        receivedNumber
+    },
+    morekeywords=[4]{ \%inf, \%pi, },   % 定数
+    sensitive=true,         % 大文字小文字の区別
+    morecomment=[l]{//},    % コメントアウト
+    morestring=[d]{'}{'},   % 文字列 (シングル)
+    morestring=[b]{"},      % 文字列 (ダブル)
+    alsoletter={\%},        % 文字としてに\%を追加
+}
+\lstset{
+    language=myscilab,  % 新しく定義した言語を設定
+    frame=true,         % 枠設定
+    breaklines=true,    % 行が長くなった場合自動改行
+    breakindent=12pt,   % 自動改行時のインデント
+    columns=fixed,      % 文字の間隔を統一
+    basewidth=0.5em,    % 文字の横のサイズを小さく
+    numbers=left,       % 行数の位置
+    numberstyle={\scriptsize \color{white}},  % 行数のフォント
+    stepnumber=1,       % 行数の増間
+    numbersep=1zw,      % 行数の余白
+    xrightmargin=0zw,   % 左の余白
+    xleftmargin=2zw,    % 右の余白
+    framexleftmargin=18pt,  % フレームからの左の余白
+    keepspaces=true,    % スペースを省略せず保持
+    lineskip=-0.2ex,    % 枠線の途切れ防止
+    tabsize = 4,        % タブ数
+    showstringspaces=false,  %文字列中の半角スペースを表示させない
+    %%%%% VSCode風 の style & color %%%%%
+    backgroundcolor={\color[gray]{0.1}},                    %背景色
+    basicstyle     ={\small\ttfamily \color{white}},        % 基礎の文字のフォント設定
+    identifierstyle={\small          \color{identifier}},   % 変数名などのフォント設定
+    commentstyle   ={\small          \color{comment}},      % コメントのフォント設定
+    keywordstyle   =[1]{\small\bfseries \color{keyword1}},  % 予約語のフォント設定
+    keywordstyle   =[2]{\small\bfseries \color{keyword2}},  % 関数名のフォント設定
+    keywordstyle   =[3]{\small\bfseries \color{keyword3}},  % 大域変数のフォント設定
+    keywordstyle   =[4]{\small\bfseries \color{keyword4}},  % 定数のフォント設定
+    stringstyle    ={\small\ttfamily    \color{string}},    % 文字列のフォント設定
+    %%%%% VSCode風 の style & color %%%%%
+}
+\definecolor{identifier}{rgb}{0.611, 0.862, 0.996}  % LightBlue (変数)
+\definecolor{comment}{rgb}{0.415, 0.600, 0.333}     % DeepGreen (コメント)
+\definecolor{keyword1}{rgb}{0.768, 0.521, 0.749}    % Purple    (予約語)
+\definecolor{keyword2}{rgb}{0.862, 0.862, 0.666}    % Yellow    (関数名)
+\definecolor{keyword3}{rgb}{0.2, 0.8, 1}            % Blue      (大域変数)
+\definecolor{keyword4}{rgb}{0.854, 0.439, 0.839}    % Pink      (定数)
+\definecolor{string}{rgb}{0.847, 0.560, 0.458}      % Orange    (文字列)
+
+
+\title{ヒューマンインターフェース第1回課題}
+\author{920092 松本隼典}
+
+\begin{document}
+
+\maketitle
+
+\section{問1}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{HIP1.png}\includegraphics[width=0.4\textwidth]{HIFitts.png}
+    \label{fig:my_label}
+\end{figure}
+
+メニューが最上部にある場合、
+\section{問2}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{HIP2.png}\includegraphics[width=0.4\textwidth]{HIhick.png}
+    \label{fig:my_label}
+\end{figure}
+
+一括で8項目の選択肢から1項目を選ぶメニュー方式の所要時間は、Hickの法則より、
+
+\begin{equation}
+    T=a+b \times \log_2_ (8+1)
+\end{equation}
+
+ここで、aは意思決定を除く所要時間を表しており、bは意思決定にかかる所要時間を表している。
+ここで、aを200[ms],bを150[ms]とすると、所要時間Tは、以下の式となる。
+\begin{equation}
+    T=200+150 \times \log_2_ (8+1)
+\end{equation}
+
+より、T\fallingdotseq 675.5[ms]  となる。
+
+
+そして、4項目ずつの２つのメニューに分割されている場合は、Hickの法則より、以下の式となる。
+
+\begin{equation}
+    T=200+150 \times \log_2_ (4+1)
+\end{equation}
+
+より、T\fallingdotseq 548.3[ms]  となる。
+しかし、ここでは1つ目のメニューに押したいボタンがあった場合であるため、２つ目のメニューに押したいボタンがあった時、4項目のメニューを選ぶ動作を2回行うので、以下の式となる。
+
+\begin{equation}
+    T=2\times \lbrace200+150 \times \log_2_ (4+1)\rbrace
+\end{equation}
+
+より、T\fallingdotseq 1096.6[ms]  となる。
+
+
+これより、4項目ずつの２つのメニューの１つ目のメニューに選択したいものがあった場合、4項目ずつのメニュー方式が時間を抑えられる。
+しかし、4項目ずつの２つのメニューの１つ目のメニューに選択したいものがなかった場合、一括で8項目の選択肢から1項目を選ぶメニュー方式が時間を抑えられる。
+\end{document}
